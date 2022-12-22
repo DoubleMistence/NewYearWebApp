@@ -1,6 +1,5 @@
 $(function() {
     var imgs = new Array();
-    var img_objects = new Array();
     var cnt = 18;       // 画像枚数
     var speed = 90;   // ミリ秒(1秒=1000)
     var now = -1;

@@ -9,7 +9,11 @@
 {% block content %}
     <div id="bodycontents">
         <div id="tgPara2Images">
-            <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage">
+            <div id="overlap">
+                <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage">
+                <img src="{{ url_for('static', filename='img/effect5.PNG') }}" alt="startImage" id="effectImage">
+            </div>
+            
             <form>
                 <input type="button" value="Start/Stop" id="stopButton"><br>
             </form>
