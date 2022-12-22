@@ -1,14 +1,25 @@
-:root{
-    --slotspeed: 1.0s;
+#bodycontents{
+  height : 100%;
 }
-.parapara {
-    width: 132px;
-    height: 166px;
-    background: url('../img/animation_test.png') no-repeat;
-    animation: parapara 1.0s infinite;
-  }
-  @keyframes parapara {
-    to {
-      background-position: -792px 0;
-    }
-  }
+
+#tgPara2Images{
+  height : 80%;
+}
+
+#result{
+  height : 20%;
+}
+
+#paraImage{
+  object-fit : contain;
+  height : 80%;
+}
+
+form{
+  height : 20%;
+}
+
+
+p{
+  margin : 0;
+}
