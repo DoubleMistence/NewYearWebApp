@@ -19,6 +19,7 @@ $(function() {
         now++;
         $("#paraImage").attr("src", imgs[now]);
         now_num = now + 1;
+        
         if (now >= imgs.length-1) {
             now = -1;
         }
