@@ -1,0 +1,14 @@
+:root{
+    --slotspeed: 1.0s;
+}
+.parapara {
+    width: 132px;
+    height: 166px;
+    background: url('../img/animation_test.png') no-repeat;
+    animation: parapara 1.0s infinite;
+  }
+  @keyframes parapara {
+    to {
+      background-position: -792px 0;
+    }
+  }

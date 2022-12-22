@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+            <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+            <title>
+                {% block title %}{# title content #}{% endblock %}
+            </title>
+        {% block head %}{# head contents #}{% endblock %}
+    </head>
+
+    <body>        
+        {% block content %}{# body contents #}{% endblock %}
+    </body>
+</html>
