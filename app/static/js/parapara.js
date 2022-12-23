@@ -6,7 +6,26 @@ $(function() {
     var timerName;
     var result = document.querySelector("#result");
     var loaded_imgs = [];
+    var bg = $("#loader-bg");
+    var loader = $("#loader");
+    var start = $("#startButton");
+    var drum = document.querySelector('#reel');
 
+    function reel() {
+        drum.play();
+        drum.loop = true;
+    }
+
+    function stopload() {
+        bg.delay(900).fadeOut(800);
+        loader.delay(900).fadeOut(300);       
+    }
+
+    function cymbal() {
+        drum.loop = false;
+        drum.pause();
+        document.querySelector('#cymbal').play();
+    }
     
     function preload_imgs(arrayData) {
         var loading = [];
@@ -18,13 +37,21 @@ $(function() {
         }
         return loading;
     }
+
+    start.click(function(){
+        timerName = setInterval(pars2images, speed);
+        reel();
+        stopload();
+    })
+
+    bg.removeClass('is-hide');
+    loader.removeClass('is-hide');
     
     for (i=0; i<cnt; i++) {
         imgs[i] = "../static/img/img" + (i+1) + ".PNG";
     }
     loaded_imgs = preload_imgs(imgs);
- 
-    //timerName = setInterval(pars2images, speed);   // 自動的に開始する場合はコメント外す
+    start.removeClass('is-hide');
  
     // パラパラ実行
     function pars2images() {
@@ -40,14 +67,24 @@ $(function() {
     // スタートストップ
     $("#stopButton").click(function(){
         if (timerName) {
+            cymbal();
             clearInterval(timerName);
             timerName = null;
-            result.textContent = Math.round(now_num/2);
-            if (now_num%2 === 1) {
-                $("#paraImage").attr('src', loaded_imgs[now_num].src);
+            if (now_num%2 === 1){
+                result.textContent = (now_num + 1) / 2;
+            } else {
+                console.log(now_num);
+                result.textContent = (now_num/2) % 9 + 1;
+                $("#paraImage").attr('src', loaded_imgs[now_num % 17].src);
             }
+            
+            /*
+            if (now_num%2 === 0) {
+                $("#paraImage").attr('src', loaded_imgs[now_num/2+1].src);
+            }
+            */
         } else {
-            timerName = setInterval(pars2images, speed);
+            //timerName = setInterval(pars2images, speed);
         }
     });
 /*

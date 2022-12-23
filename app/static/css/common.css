@@ -3,7 +3,8 @@ html{
 }
 
 body {
-    background-color: rgb(226, 81, 81);
+    /*background-color: rgb(226, 81, 81);*/
+    background-image: "../img/bg.jpg";
     height : 100%;
     margin : 0;
     }

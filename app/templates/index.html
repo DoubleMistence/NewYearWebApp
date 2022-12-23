@@ -1,28 +1,42 @@
 {% extends "layout.html" %}
 
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/animation.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slot.css') }}">
 {% endblock %}
 
 {% block title %}DoubleMistence{% endblock %}
 
 {% block content %}
+    <div id="loader-bg" class="is-hide">
+        <div id="loader" class="is-hide">
+            <p>
+                音声を再生します
+            </p><br>
+            <input type="button" value="Start" id="startButton" class="is-hide">
+        </div>
+    </div>
     <div id="bodycontents">
         <div id="tgPara2Images">
             <div id="overlap">
                 <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage">
-                <img src="{{ url_for('static', filename='img/effect5.PNG') }}" alt="startImage" id="effectImage">
+                <img src="{{ url_for('static', filename='img/effect13.PNG') }}" alt="startImage" id="effectImage">
             </div>
-            
             <form>
-                <input type="button" value="Start/Stop" id="stopButton"><br>
+                <input type="button" value="stop" id="stopButton"><br>
             </form>
         </div>
-        <div id="result">
+        <div id="result" hidden>
             <p></p>
         </div>
     </div>
+    <audio id="reel">
+        <source src="{{ url_for('static', filename='resource/drumroll.mp3') }}" type="audio/mp3">
+    </audio>
+    <audio id="cymbal">
+        <source src="{{ url_for('static', filename='resource/cymbal.mp3') }}" type="audio/mp3">
+    </audio>
     
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='js/parapara.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/effect.js') }}" charset="UTF-8"></script>
 {% endblock %}
