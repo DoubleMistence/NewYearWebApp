@@ -12,8 +12,8 @@ $(function() {
     var shan = document.querySelector('#cymbal');
     var start_Button = $("#startButton");
 
-    var stop_Button = $("#stopButton");
-    var paraImage = $("#paraImage");
+    var stop_Button = $("#stopButton3");
+    var paraImage = $("#paraImage3");
 
     drum.volume = 0.2;
     shan.volume = 0.2;

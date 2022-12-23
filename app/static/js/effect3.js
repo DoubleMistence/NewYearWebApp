@@ -7,8 +7,8 @@ $(function() {
     var loaded_imgs = [];
     var go = 0;
 
-    var ignition = $("#stopButton");
-    var effectimage = $("#effectImage");
+    var ignition = $("#stopButton3");
+    var effectimage = $("#effectImage3");
 
     
     function preload_imgs(arrayData) {

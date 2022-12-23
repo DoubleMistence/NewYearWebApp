@@ -18,16 +18,49 @@
     <div id="bodycontents">
         <div id="tgPara2Images">
             <div id="overlap">
-                <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage">
-                <img src="{{ url_for('static', filename='img/effect13.PNG') }}" alt="startImage" id="effectImage">
+                <div id="reroll"><figure></figure></div>
+                <div id="slot1" class="reel">
+                    <div class="container-item-slotimg">
+                        <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage" class="slot">
+                        <img src="{{ url_for('static', filename='img/effect13.PNG') }}" alt="startImage" id="effectImage">
+                    </div>
+                    <div id="stopper">
+                        <form>
+                            <input type="button" value="stop" id="stopButton"><br>
+                        </form>
+                    </div>
+                </div>
+                <div id="slot2" class="reel">
+                    <div class="container-item-slotimg">
+                        <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage2" class="slot">
+                        <img src="{{ url_for('static', filename='img/effect13.PNG') }}" alt="startImage" id="effectImage2">
+                    </div>
+                    <div id="stopper">
+                        <form>
+                            <input type="button" value="stop" id="stopButton2"><br>
+                        </form>
+                    </div>
+                </div>
+                <div id="slot3" class="reel">
+                    <div class="container-item-slotimg">
+                        <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage3" class="slot">
+                        <img src="{{ url_for('static', filename='img/effect13.PNG') }}" alt="startImage" id="effectImage3">
+                    </div>
+                    <div id="stopper">
+                        <form>
+                            <input type="button" value="stop" id="stopButton3"><br>
+                        </form>
+                    </div>
+                </div>
+                <div id="design"><figure></figure></div>
             </div>
-            <form>
-                <input type="button" value="stop" id="stopButton"><br>
-            </form>
         </div>
-        <div id="result" hidden>
-            <p></p>
-        </div>
+        <div id="sidemenu"><figure></figure></div>
+        <form>
+            <input id="result" value="" hidden>
+            <input id="result2" value="" hidden>
+            <input id="result3" value="" hidden>
+        </form>
     </div>
     <audio id="reel">
         <source src="{{ url_for('static', filename='resource/drumroll.mp3') }}" type="audio/mp3">
@@ -39,4 +72,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='js/parapara.js') }}" charset="UTF-8"></script>
     <script src="{{ url_for('static', filename='js/effect.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/parapara2.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/effect2.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/parapara3.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/effect3.js') }}" charset="UTF-8"></script>
 {% endblock %}
