@@ -1,19 +1,51 @@
 $(function() {
     var imgs = new Array();
     var cnt = 18;       // 画像枚数
-    var speed = 90;   // ミリ秒(1秒=1000)
+    var roll_speed = Number(document.querySelector("#roll_speed").value);
+    var speed = getRandomArbitrary(roll_speed,roll_speed+5);   // ミリ秒(1秒=1000)
     var now = -1;
     var timerName;
     var result = document.querySelector("#result");
+    var result2 = document.querySelector("#result2");
+    var result3 = document.querySelector("#result3");
     var loaded_imgs = [];
     var bg = $("#loader-bg");
     var loader = $("#loader");
     var drum = document.querySelector('#reel');
     var shan = document.querySelector('#cymbal');
     var start_Button = $("#startButton");
+    var effective = document.querySelector("#slot1-effect");
 
     var stop_Button = $("#stopButton");
     var paraImage = $("#paraImage");
+    var reroll_btn = $("#reroll-btn");
+
+    go = 0;
+    document.addEventListener('keypress', keypress_ivent);
+    console.log(speed);
+
+    function keypress_ivent(e) {
+        if(e.code === 'KeyV'){
+            //Vキーが押された時の処理
+            stop_Button.click();
+        } else if(e.code === 'Space'){
+            //Spaceキーが押された時の処理
+            if (go === 0) {
+                start_Button.click();
+                go = 1;
+            }
+        } else if(e.code === 'KeyA'){
+            //Aキーが押された時の処理
+            reroll_btn.click();
+        }
+        return false; 
+    }
+
+    function getRandomArbitrary(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+    }
 
     drum.volume = 0.2;
     shan.volume = 0.2;
@@ -51,6 +83,19 @@ $(function() {
         stopload();
     })
 
+    reroll_btn.click(function(){
+        roll_speed = Number(document.querySelector("#roll_speed").value);
+        speed = getRandomArbitrary(roll_speed,roll_speed+5);
+        console.log(result.value,result2.value,result3.value);
+        effective.value = 1;
+        now = -1;
+        clearInterval(timerName);
+        timerName = null;
+        result.value = null;
+        timerName = setInterval(pars2images, speed);
+        reel();
+    })
+
     bg.removeClass('is-hide');
     loader.removeClass('is-hide');
     
@@ -63,39 +108,32 @@ $(function() {
     // パラパラ実行
     function pars2images() {
         drum.play();
+        effective.value = 1;
         now++;
         paraImage.attr('src', loaded_imgs[now].src);
-        now_num = now + 1;
 
         if (now >= imgs.length-1) {
             now = -1;
         }
     }
- 
+
     // スタートストップ
     stop_Button.click(function(){
         if (timerName) {
             cymbal();
             clearInterval(timerName);
             timerName = null;
-            console.log(now_num);
+            now_num = now + 1;
             if (now_num%2 === 1){
                 result.value = (now_num + 1) / 2;
             } else {
                 result.value = (now_num/2) % 9 + 1;
                 paraImage.attr('src', loaded_imgs[now_num % 18].src);
+                console.log("1表示画像は",now_num%18);
             }
         } else {
             //スタートに使える
             //timerName = setInterval(pars2images, speed);
         }
     });
-/*
-    // ストップ
-    $("#stopButton").click(function(){
-        if (timerName) {
-            clearInterval(timerName);
-        }
-    });
-*/
 });

@@ -18,7 +18,15 @@
     <div id="bodycontents">
         <div id="tgPara2Images">
             <div id="overlap">
-                <div id="reroll"><figure></figure></div>
+                <div id="reroll">
+                    <div id="info"></div>
+                    <div id="reroll-space">
+                        <input type="button" value="reroll" id="reroll-btn">
+                        <input id="slot1-effect" value="" hidden>
+                        <input id="slot2-effect" value="" hidden>
+                        <input id="slot3-effect" value="" hidden>
+                    </div>
+                </div>
                 <div id="slot1" class="reel">
                     <div class="container-item-slotimg">
                         <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage" class="slot">
@@ -60,6 +68,7 @@
             <input id="result" value="" hidden>
             <input id="result2" value="" hidden>
             <input id="result3" value="" hidden>
+            <input id="roll_speed" value="100" hidden>
         </form>
     </div>
     <audio id="reel">

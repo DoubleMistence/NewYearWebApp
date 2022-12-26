@@ -6,6 +6,7 @@ $(function() {
     var timerName = null;
     var loaded_imgs = [];
     var go = 0;
+    var effective = document.querySelector("#slot3-effect");
 
     var ignition = $("#stopButton3");
     var effectimage = $("#effectImage3");
@@ -46,9 +47,10 @@ $(function() {
  
     // ストップボタンを押されたとき
     ignition.click(function(){
-        if (go === 0) {
+        if (effective.value === String(1)) {
+            clearInterval(timerName);
             timerName = setInterval(pars2images, speed);
-            go = 1;
+            effective.value = 0;
         } else {
             //ここを有効にして連続でボタンを押せるようにする
             //go = 0;
