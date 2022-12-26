@@ -55,7 +55,6 @@ $(function() {
     
     function preload_imgs(arrayData) {
         var loading = [];
-        console.log(arrayData[2])
         for (var i = 0; i < arrayData.length; i++) {
             loading[i] = new Image();
             loading[i].src = arrayData[i];
@@ -73,6 +72,7 @@ $(function() {
     reroll_btn.click(function(){
         roll_speed = Number(document.querySelector("#roll_speed").value);
         speed = getRandomArbitrary(roll_speed,roll_speed+5);
+        stop_Button.attr('src', '../static/img/slot-stop.svg');
         effective.value = 1;
         now = -1;
         clearInterval(timerName);
@@ -107,6 +107,7 @@ $(function() {
     stop_Button.click(function(){
         if (timerName) {
             cymbal();
+            stop_Button.attr('src', '../static/img/slot-stop-red.svg');
             clearInterval(timerName);
             timerName = null;
             now_num = now + 1;
@@ -115,7 +116,6 @@ $(function() {
             } else {
                 result.value = (now_num/2) % 9 + 1;
                 paraImage.attr('src', loaded_imgs[now_num % 18].src);
-                console.log("3表示画像は",now_num%18);
             }
         } else {
             //スタートに使える

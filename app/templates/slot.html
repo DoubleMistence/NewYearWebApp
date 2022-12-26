@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slot.css') }}">
+{% endblock %}
+
+{% block title %}DoubleMistence{% endblock %}
+
+{% block content %}
+    <div id="loader-bg" class="is-hide">
+        <div id="loader" class="is-hide">
+            <p>
+                音声を再生します
+            </p><br>
+            <input type="button" value="Start" id="startButton" class="is-hide">
+        </div>
+    </div>
+    <div id="bodycontents">
+        <div id="tgPara2Images">
+            <div id="overlap">
+                <div id="reroll">
+                    <div id="info"></div>
+                    <div id="reroll-space">
+                        <img value="reroll" id="reroll-btn" src="../static/img/reroll-off.svg">
+                        <input id="slot1-effect" value="" hidden>
+                        <input id="slot2-effect" value="" hidden>
+                        <input id="slot3-effect" value="" hidden>
+                    </div>
+                </div>
+                <div id="slot1" class="reel">
+                    <div class="container-item-slotimg">
+                        <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage" class="slot">
+                        <img src="{{ url_for('static', filename='img/effect13.PNG') }}" alt="startImage" id="effectImage">
+                    </div>
+                    <div id="stopper">
+                        <img value="stop" id="stopButton" src="../static/img/slot-stop.svg" class="stop"><br>
+                    </div>
+                </div>
+                <div id="slot2" class="reel">
+                    <div class="container-item-slotimg">
+                        <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage2" class="slot">
+                        <img src="{{ url_for('static', filename='img/effect13.PNG') }}" alt="startImage" id="effectImage2">
+                    </div>
+                    <div id="stopper">
+                        <img value="stop" id="stopButton2" src="../static/img/slot-stop.svg" class="stop"><br>
+                    </div>
+                </div>
+                <div id="slot3" class="reel">
+                    <div class="container-item-slotimg">
+                        <img src="{{ url_for('static', filename='img/img1.PNG') }}" alt="startImage" id="paraImage3" class="slot">
+                        <img src="{{ url_for('static', filename='img/effect13.PNG') }}" alt="startImage" id="effectImage3">
+                    </div>
+                    <div id="stopper">
+                        <img value="stop" id="stopButton3" src="../static/img/slot-stop.svg" class="stop"><br>
+                    </div>
+                </div>
+                <div id="design"><figure></figure></div>
+            </div>
+        </div>
+        <div id="sidemenu"><figure></figure></div>
+        <form>
+            <input id="result" value="" hidden>
+            <input id="result2" value="" hidden>
+            <input id="result3" value="" hidden>
+            <input id="roll_speed" value="100" hidden>
+        </form>
+    </div>
+    <audio id="reel">
+        <source src="{{ url_for('static', filename='resource/drumroll.mp3') }}" type="audio/mp3">
+    </audio>
+    <audio id="cymbal">
+        <source src="{{ url_for('static', filename='resource/cymbal.mp3') }}" type="audio/mp3">
+    </audio>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/parapara.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/effect.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/parapara2.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/effect2.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/parapara3.js') }}" charset="UTF-8"></script>
+    <script src="{{ url_for('static', filename='js/effect3.js') }}" charset="UTF-8"></script>
+{% endblock %}

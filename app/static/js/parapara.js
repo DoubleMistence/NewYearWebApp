@@ -3,6 +3,13 @@ $(function() {
     var cnt = 18;       // 画像枚数
     var roll_speed = Number(document.querySelector("#roll_speed").value);
     var speed = getRandomArbitrary(roll_speed,roll_speed+5);   // ミリ秒(1秒=1000)
+    var btns_url = [
+        '../static/img/reroll-off.svg',
+        '../static/img/reroll-on.svg',
+        '../static/img/slot-stop.svg',
+        '../static/img/slot-stop-red.svg'
+    ];
+    var btns = [];
     var now = -1;
     var timerName;
     var result = document.querySelector("#result");
@@ -22,7 +29,6 @@ $(function() {
 
     go = 0;
     document.addEventListener('keypress', keypress_ivent);
-    console.log(speed);
 
     function keypress_ivent(e) {
         if(e.code === 'KeyV'){
@@ -68,25 +74,30 @@ $(function() {
     
     function preload_imgs(arrayData) {
         var loading = [];
-        console.log(arrayData[2])
         for (var i = 0; i < arrayData.length; i++) {
             loading[i] = new Image();
             loading[i].src = arrayData[i];
             loading[i].onload;
         }
+        for (var i = 0; i < btns_url.length; i++) {
+            btns[i] = new Image();
+            btns[i].src = btns_url[i];
+            btns[i].onload;
+        }
         return loading;
     }
 
-    start_Button.click(function(){
+    start_Button.click(function() {
         timerName = setInterval(pars2images, speed);
         reel();
         stopload();
     })
 
-    reroll_btn.click(function(){
+    reroll_btn.click(function() {
+        reroll_btn.attr('src', btns[1].src);
         roll_speed = Number(document.querySelector("#roll_speed").value);
         speed = getRandomArbitrary(roll_speed,roll_speed+5);
-        console.log(result.value,result2.value,result3.value);
+        stop_Button.attr('src', btns[2].src);
         effective.value = 1;
         now = -1;
         clearInterval(timerName);
@@ -94,6 +105,7 @@ $(function() {
         result.value = null;
         timerName = setInterval(pars2images, speed);
         reel();
+        setTimeout(function(){reroll_btn.attr('src', btns[0].src)},1000);
     })
 
     bg.removeClass('is-hide');
@@ -121,6 +133,7 @@ $(function() {
     stop_Button.click(function(){
         if (timerName) {
             cymbal();
+            stop_Button.attr('src', btns[3].src);
             clearInterval(timerName);
             timerName = null;
             now_num = now + 1;
@@ -129,7 +142,6 @@ $(function() {
             } else {
                 result.value = (now_num/2) % 9 + 1;
                 paraImage.attr('src', loaded_imgs[now_num % 18].src);
-                console.log("1表示画像は",now_num%18);
             }
         } else {
             //スタートに使える

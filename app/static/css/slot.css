@@ -154,3 +154,13 @@
 #loader p img {
   display: inline-block;
 }
+
+.stop{
+  height : 50%;
+  width : 50%;
+}
+
+#reroll-btn{
+  height : 50%;
+  width : 50%;
+}

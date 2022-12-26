@@ -8,6 +8,11 @@ c = 0
 size = (1280,720)
 file = [[],[],[],[]]
 
+l = os.listdir(output_dir)
+l_img_num = len([s for s in l if s.startswith('img')])
+for i in range(l_img_num):
+    os.remove(output_dir + 'img' + str(i + 1) + '.PNG')
+
 for file_name in os.listdir(read_dir):
     file_path = os.path.join(read_dir,file_name)
     file[0].append(file_path)
