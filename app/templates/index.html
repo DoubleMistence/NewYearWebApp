@@ -1,10 +1,34 @@
 {% extends "layout.html" %}
 
 {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 {% endblock %}
 
-{% block titile %}
-{% endblock %}
+{% block titile %}DoubleMistence{% endblock %}
 
 {% block content %}
+    <div id="all">
+        <div id="title">
+            <img id="title_logo" src="../static/img/logo.svg">
+        </div>
+        <div id="body">
+            <div id="left"></div>
+            <div id="left_kado">
+                <img id="kadomatsu" src="../static/img/kadomatsu.svg">
+            </div>
+            <div id="button_zone">
+                <div id="none"></div>
+                <div id="config_button">
+                    <a href="{{ url_for('config') }}"><img id="configpage" src="../static/img/configru.svg"></a><br>
+                </div>
+                <div id="slot_button">
+                    <a href="{{ url_for('slot') }}"><img id="slotpage" src="../static/img/suroru.svg"></a>
+                </div>
+            </div>
+            <div id="right_kado">
+                <img id="kadomatsu" src="../static/img/kadomatsu.svg">
+            </div>
+            <div id="right"></div>
+        </div>
+    </div>
 {% endblock %}

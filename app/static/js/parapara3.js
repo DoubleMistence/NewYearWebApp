@@ -1,14 +1,11 @@
 $(function() {
     var imgs = new Array();
-    var cnt = 18;       // 画像枚数
-    var roll_speed = Number(document.querySelector("#roll_speed").value);
+    var cnt = list_data;       // 画像枚数
     var speed = getRandomArbitrary(roll_speed,roll_speed+5);   // ミリ秒(1秒=1000)
     var now = -1;
     var timerName;
     var result = document.querySelector("#result3");
     var loaded_imgs = [];
-    var bg = $("#loader-bg");
-    var loader = $("#loader");
     var drum = document.querySelector('#reel');
     var shan = document.querySelector('#cymbal');
     var start_Button = $("#startButton");
@@ -42,11 +39,6 @@ $(function() {
         drum.loop = true;
     }
 
-    function stopload() {
-        bg.delay(900).fadeOut(800);
-        loader.delay(900).fadeOut(300);       
-    }
-
     function cymbal() {
         shan.currentTime = 0; 
         drum.pause();
@@ -66,30 +58,23 @@ $(function() {
     start_Button.click(function(){
         timerName = setInterval(pars2images, speed);
         reel();
-        stopload();
     })
 
     reroll_btn.click(function(){
-        roll_speed = Number(document.querySelector("#roll_speed").value);
         speed = getRandomArbitrary(roll_speed,roll_speed+5);
         stop_Button.attr('src', '../static/img/slot-stop.svg');
         effective.value = 1;
-        now = -1;
         clearInterval(timerName);
         timerName = null;
         result.value = null;
         timerName = setInterval(pars2images, speed);
         reel();
     })
-
-    bg.removeClass('is-hide');
-    loader.removeClass('is-hide');
     
     for (i=0; i<cnt; i++) {
         imgs[i] = "../static/img/img" + (i+1) + ".PNG";
     }
     loaded_imgs = preload_imgs(imgs);
-    start_Button.removeClass('is-hide');
  
     // パラパラ実行
     function pars2images() {

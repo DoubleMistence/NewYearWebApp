@@ -1,7 +1,6 @@
 $(function() {
     var imgs = new Array();
-    var cnt = 18;       // 画像枚数
-    var roll_speed = Number(document.querySelector("#roll_speed").value);
+    var cnt = list_data;       // 画像枚数
     var speed = getRandomArbitrary(roll_speed,roll_speed+5);   // ミリ秒(1秒=1000)
     var btns_url = [
         '../static/img/reroll-off.svg',
@@ -16,8 +15,6 @@ $(function() {
     var result2 = document.querySelector("#result2");
     var result3 = document.querySelector("#result3");
     var loaded_imgs = [];
-    var bg = $("#loader-bg");
-    var loader = $("#loader");
     var drum = document.querySelector('#reel');
     var shan = document.querySelector('#cymbal');
     var start_Button = $("#startButton");
@@ -26,6 +23,18 @@ $(function() {
     var stop_Button = $("#stopButton");
     var paraImage = $("#paraImage");
     var reroll_btn = $("#reroll-btn");
+
+    var bg = $("#loader-bg");
+    var loader = $("#loader");
+    var body = $("#bodycontents");
+    
+    bg.removeClass('is-hide');
+    loader.removeClass('is-hide');
+    function stopload() {
+        //body.removeClass('is-hide');
+        bg.delay(900).fadeOut(800);
+        loader.delay(900).fadeOut(300);
+    }
 
     go = 0;
     document.addEventListener('keypress', keypress_ivent);
@@ -38,11 +47,13 @@ $(function() {
             //Spaceキーが押された時の処理
             if (go === 0) {
                 start_Button.click();
-                go = 1;
             }
         } else if(e.code === 'KeyA'){
             //Aキーが押された時の処理
-            reroll_btn.click();
+            if (go === 1) {
+                reroll_btn.click();
+            }
+            
         }
         return false; 
     }
@@ -59,11 +70,6 @@ $(function() {
     function reel() {
         drum.play();
         drum.loop = true;
-    }
-
-    function stopload() {
-        bg.delay(900).fadeOut(800);
-        loader.delay(900).fadeOut(300);       
     }
 
     function cymbal() {
@@ -89,27 +95,25 @@ $(function() {
 
     start_Button.click(function() {
         timerName = setInterval(pars2images, speed);
+        go = 1;
         reel();
         stopload();
     })
 
     reroll_btn.click(function() {
         reroll_btn.attr('src', btns[1].src);
-        roll_speed = Number(document.querySelector("#roll_speed").value);
-        speed = getRandomArbitrary(roll_speed,roll_speed+5);
         stop_Button.attr('src', btns[2].src);
+        speed = getRandomArbitrary(roll_speed,roll_speed+5);
         effective.value = 1;
-        now = -1;
         clearInterval(timerName);
         timerName = null;
         result.value = null;
         timerName = setInterval(pars2images, speed);
         reel();
-        setTimeout(function(){reroll_btn.attr('src', btns[0].src)},1000);
+        setTimeout(function(){reroll_btn.attr('src', btns[0].src)},400);
     })
 
-    bg.removeClass('is-hide');
-    loader.removeClass('is-hide');
+
     
     for (i=0; i<cnt; i++) {
         imgs[i] = "../static/img/img" + (i+1) + ".PNG";

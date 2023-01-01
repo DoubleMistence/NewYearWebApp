@@ -7,6 +7,10 @@
 {% block title %}DoubleMistence{% endblock %}
 
 {% block content %}
+    <script type="text/javascript">
+        let list_data = {{ img_num }};
+        var roll_speed = {{ roll_speed }};
+    </script>
     <div id="loader-bg" class="is-hide">
         <div id="loader" class="is-hide">
             <p>
@@ -15,7 +19,7 @@
             <input type="button" value="Start" id="startButton" class="is-hide">
         </div>
     </div>
-    <div id="bodycontents">
+    <div id="bodycontents" class="is-hide">
         <div id="tgPara2Images">
             <div id="overlap">
                 <div id="reroll">
@@ -62,7 +66,6 @@
             <input id="result" value="" hidden>
             <input id="result2" value="" hidden>
             <input id="result3" value="" hidden>
-            <input id="roll_speed" value="100" hidden>
         </form>
     </div>
     <audio id="reel">
